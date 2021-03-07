@@ -42,9 +42,9 @@ namespace CompareImages
                         pixelColor02 = bitmap02.GetPixel(x, y);
 
                         int red, blue, green;
-                        red = (pixelColor01.R + pixelColor02.R);
-                        blue = (pixelColor01.B + pixelColor02.B);
-                        green = (pixelColor01.G + pixelColor02.G);
+                        red = (pixelColor01.R % (pixelColor02.R + 1));
+                        blue = (pixelColor01.B % (pixelColor02.B + 1));
+                        green = (pixelColor01.G % (pixelColor02.G + 1));
 
                         red = red % 255;
                         blue = blue % 255;

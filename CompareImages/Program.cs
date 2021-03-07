@@ -38,13 +38,13 @@ namespace CompareImages
             string date = "";
             // string date = DateTime.Now.ToString(@"MM-dd-yyyy_h-mm-ss");
 
-            CleanAverage averager = new CleanAverage(bitmap01, bitmap02);
+            CleanAverage averager = new CleanAverage(bitmap01, bitmap04);
             averager.writeBitmap(String.Format("cleanAverage1{0}.bmp", date));
 
-            PartialAverage paverager = new PartialAverage(bitmap01, bitmap02);
+            PartialAverage paverager = new PartialAverage(bitmap01, bitmap04);
             paverager.writeBitmap(String.Format("partialAverage1{0}.bmp", date));
 
-            Test test = new Test(bitmap01, bitmap02);
+            Test test = new Test(bitmap01, bitmap04);
             test.writeBitmap(String.Format("test{0}.bmp", date));
 
             CombineImages combiner = new CombineImages(bitmap01, bitmap02, bitmap03, bitmap04);
