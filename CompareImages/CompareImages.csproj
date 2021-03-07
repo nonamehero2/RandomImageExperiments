@@ -52,6 +52,8 @@
     <Compile Include="CleanAverage.cs" />
     <Compile Include="CombineImages.cs" />
     <Compile Include="PartialAverage.cs" />
+    <Compile Include="AccidentalGradient.cs" />
+    <Compile Include="Modulus.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

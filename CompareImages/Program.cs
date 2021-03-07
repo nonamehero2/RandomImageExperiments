@@ -41,11 +41,33 @@ namespace CompareImages
             CleanAverage averager = new CleanAverage(bitmap01, bitmap04);
             averager.writeBitmap(String.Format("cleanAverage1{0}.bmp", date));
 
+            CleanAverage averager2 = new CleanAverage(bitmap02, bitmap03);
+            averager2.writeBitmap(String.Format("cleanAverage2{0}.bmp", date));
+
             PartialAverage paverager = new PartialAverage(bitmap01, bitmap04);
             paverager.writeBitmap(String.Format("partialAverage1{0}.bmp", date));
 
+            PartialAverage paverager2 = new PartialAverage(bitmap02, bitmap03);
+            paverager2.writeBitmap(String.Format("partialAverage2{0}.bmp", date));
+
+            Modulus modulus = new Modulus(bitmap01, bitmap04);
+            modulus.writeBitmap(String.Format("modulus1{0}.bmp", date));
+
+            Modulus modulus2 = new Modulus(bitmap02, bitmap03);
+            modulus2.writeBitmap(String.Format("modulus2{0}.bmp", date));
+
+            AccidentalGradient gradient1 = new AccidentalGradient(bitmap01, bitmap04);
+            gradient1.writeBitmap(String.Format("gradient1{0}.bmp", date));
+
+            AccidentalGradient gradient2 = new AccidentalGradient(bitmap02, bitmap03);
+            gradient2.writeBitmap(String.Format("gradient2{0}.bmp", date));
+
+
             Test test = new Test(bitmap01, bitmap04);
             test.writeBitmap(String.Format("test{0}.bmp", date));
+
+            Test test2 = new Test(bitmap02, bitmap04);
+            test2.writeBitmap(String.Format("test2{0}.bmp", date));
 
             CombineImages combiner = new CombineImages(bitmap01, bitmap02, bitmap03, bitmap04);
             combiner.writeBitmap(String.Format("combineImage{0}.bmp", date));
