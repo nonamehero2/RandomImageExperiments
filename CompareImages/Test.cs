@@ -11,9 +11,9 @@ using Microsoft.Win32;
 
 namespace CompareImages
 {
-    public class CleanAverage
+    public class Test
     {
-        public CleanAverage(Bitmap image1, Bitmap image2)
+        public Test(Bitmap image1, Bitmap image2)
         {
             bitmap01 = image1;
             bitmap02 = image2;
@@ -32,9 +32,8 @@ namespace CompareImages
             //0 is R, 1 is B, 2 is G
             if (bitmap01.Height == bitmap02.Height && bitmap01.Width == bitmap02.Width)
             {
-                Console.WriteLine("CleanAverage Bitmap Start");
-                Console.WriteLine(bitmap01.Height);
-                Console.WriteLine(bitmap01.Width);
+
+                Console.WriteLine("Test Bitmap Start");
                 for (int x = 0; x < bitmap01.Width; x++)
                 {
                     for (int y = 0; y < bitmap01.Height; y++)
@@ -43,22 +42,13 @@ namespace CompareImages
                         pixelColor02 = bitmap02.GetPixel(x, y);
 
                         int red, blue, green;
-                        red = (pixelColor01.R + pixelColor02.R) / 2;
-                        blue = (pixelColor01.B + pixelColor02.B) / 2;
-                        green = (pixelColor01.G + pixelColor02.G) / 2;
+                        red = (pixelColor01.R + pixelColor02.R);
+                        blue = (pixelColor01.B + pixelColor02.B);
+                        green = (pixelColor01.G + pixelColor02.G);
 
-                        if (red < 0)
-                        {
-                            red = red + 255;
-                        }
-                        if (blue < 0)
-                        {
-                            blue = blue + 255;
-                        }
-                        if (green < 0)
-                        {
-                            green = green + 255;
-                        }
+                        red = red % 255;
+                        blue = blue % 255;
+                        green = green % 255;
 
                         sum[0] = (sum[0] + red);
                         sum[1] = (sum[1] + blue);
@@ -74,7 +64,7 @@ namespace CompareImages
                 }
             }
 
-            Console.WriteLine("CleanAverage Bitmap Writing");
+            Console.WriteLine("Test Bitmap Writing");
             bitmap03.Save(imagePath);
         }
 

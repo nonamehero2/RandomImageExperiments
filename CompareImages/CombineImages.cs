@@ -24,6 +24,7 @@ namespace CompareImages
         public void writeBitmap(string imagePath)
         {
             // Average Images
+            Console.WriteLine("CombineImages Bitmap Start");
             Bitmap outmap = new Bitmap(1920 * 2, 1080 * 2);
 
             Color pixelColor01 = new Color();
@@ -66,6 +67,7 @@ namespace CompareImages
                 }
             }
 
+            Console.WriteLine("CombineImages Bitmap Writing");
             outmap.Save(imagePath);
         }
 

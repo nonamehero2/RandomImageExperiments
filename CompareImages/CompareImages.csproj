@@ -51,6 +51,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="CleanAverage.cs" />
     <Compile Include="CombineImages.cs" />
+    <Compile Include="PartialAverage.cs" />
+    <Compile Include="Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -35,10 +35,17 @@ namespace CompareImages
             Image Image04 = Image.FromFile(image4Path);
             Bitmap bitmap04 = new Bitmap(Image04, 1920, 1080);
 
-            string date = DateTime.Now.ToString(@"MM-dd-yyyy_h-mm-ss");
+            string date = "";
+            // string date = DateTime.Now.ToString(@"MM-dd-yyyy_h-mm-ss");
 
             CleanAverage averager = new CleanAverage(bitmap01, bitmap02);
             averager.writeBitmap(String.Format("cleanAverage1{0}.bmp", date));
+
+            PartialAverage paverager = new PartialAverage(bitmap01, bitmap02);
+            paverager.writeBitmap(String.Format("partialAverage1{0}.bmp", date));
+
+            Test test = new Test(bitmap01, bitmap02);
+            test.writeBitmap(String.Format("test{0}.bmp", date));
 
             CombineImages combiner = new CombineImages(bitmap01, bitmap02, bitmap03, bitmap04);
             combiner.writeBitmap(String.Format("combineImage{0}.bmp", date));
