@@ -53,6 +53,9 @@
     <Compile Include="CombineImages.cs" />
     <Compile Include="PartialAverage.cs" />
     <Compile Include="AccidentalGradient.cs" />
+    <Compile Include="Subtract.cs" />
+    <Compile Include="SubtractModulus.cs" />
+    <Compile Include="SubtractAverage.cs" />
     <Compile Include="Modulus.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

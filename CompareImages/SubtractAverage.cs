@@ -12,9 +12,9 @@ using System.Drawing.Imaging;
 
 namespace CompareImages
 {
-    public class CleanAverage
+    public class SubtractAverage
     {
-        public CleanAverage(Bitmap image1, Bitmap image2)
+        public SubtractAverage(Bitmap image1, Bitmap image2)
         {
             bitmap01 = image1;
             bitmap02 = image2;
@@ -57,10 +57,21 @@ namespace CompareImages
             //0 is R, 1 is B, 2 is G
             if (data2rgbValues.Length == data1rgbValues.Length)
             {
-                Console.WriteLine("CleanAverage Bitmap Start");
+                Console.WriteLine("SubtractAverage Bitmap Start");
                 for (int x = 0; x < data1rgbValues.Length; x++)
                 {
-                    data1rgbValues[x] = Convert.ToByte((Convert.ToInt16(data1rgbValues[x]) + Convert.ToInt16(data2rgbValues[x])) / 2);
+                    if (x % 4 != 3)
+                    {
+                        int currByte = Convert.ToInt16(data1rgbValues[x]) - Convert.ToInt16(data2rgbValues[x]);
+
+                        if (currByte < 0)
+                        {
+                            currByte = (Convert.ToInt16(data1rgbValues[x]) + Convert.ToInt16(data2rgbValues[x])) / 2;
+                        }
+
+                        data1rgbValues[x] = Convert.ToByte(currByte);
+
+                    }
                 }
             }
 
@@ -81,7 +92,7 @@ namespace CompareImages
             bitmap02.UnlockBits(data2);
             bitmap03.UnlockBits(data3);
 
-            Console.WriteLine("CleanAverage Bitmap Writing");
+            Console.WriteLine("SubtractAverage Bitmap Writing");
             bitmap03.Save(imagePath);
         }
 

@@ -1,20 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using Microsoft.Win32;
 using System.Drawing.Imaging;
 
 namespace CompareImages
 {
-    public class CleanAverage
+    public class Test
     {
-        public CleanAverage(Bitmap image1, Bitmap image2)
+        public Test(Bitmap image1, Bitmap image2)
         {
             bitmap01 = image1;
             bitmap02 = image2;
@@ -38,29 +30,34 @@ namespace CompareImages
 
             System.Runtime.InteropServices.Marshal.Copy(data1ptr, data1rgbValues, 0, data1bytes);
 
-            // Copy image 2 to array
-            BitmapData data2 = bitmap02.LockBits(
-                new Rectangle(0, 0, bitmap02.Width, bitmap02.Height),
-                 ImageLockMode.ReadOnly,
-                 bitmap02.PixelFormat);
-
-            IntPtr data2ptr = data2.Scan0;
-
-            int data2bytes = Math.Abs(data2.Stride) * data2.Height;
-            byte[] data2rgbValues = new byte[data2bytes];
-
-            System.Runtime.InteropServices.Marshal.Copy(data2ptr, data2rgbValues, 0, data2bytes);
-
-
             // Do stuff
             int[] sum = { 0, 0, 0 };
             //0 is R, 1 is B, 2 is G
-            if (data2rgbValues.Length == data1rgbValues.Length)
+
+            Console.WriteLine("Test Bitmap Start");
+            for (int x = 0; x < data1rgbValues.Length; x++)
             {
-                Console.WriteLine("CleanAverage Bitmap Start");
-                for (int x = 0; x < data1rgbValues.Length; x++)
+                if (x % 4 != 3)
                 {
-                    data1rgbValues[x] = Convert.ToByte((Convert.ToInt16(data1rgbValues[x]) + Convert.ToInt16(data2rgbValues[x])) / 2);
+                    int total = 0;
+                    int averageDiv = 0;
+
+                    total += data1rgbValues[x];
+                    averageDiv++;
+
+                    if (x % data1.Width != 0)
+                    {
+                        total += data1rgbValues[x - 4];
+                        averageDiv++;
+                    }
+
+                    if (x % data1.Width - (data1.Width - 1) != 0)
+                    {
+                        total += data1rgbValues[x + 4];
+                        averageDiv++;
+                    }
+
+                    data1rgbValues[x] = (byte)(total / averageDiv);
                 }
             }
 
@@ -78,10 +75,9 @@ namespace CompareImages
             System.Runtime.InteropServices.Marshal.Copy(data1rgbValues, 0, data3ptr, data1rgbValues.Length);
 
             bitmap01.UnlockBits(data1);
-            bitmap02.UnlockBits(data2);
             bitmap03.UnlockBits(data3);
 
-            Console.WriteLine("CleanAverage Bitmap Writing");
+            Console.WriteLine("Test Bitmap Writing");
             bitmap03.Save(imagePath);
         }
 
