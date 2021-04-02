@@ -15,7 +15,7 @@ namespace CompareImages
     {
         static void Main(string[] args)
         {
-            string imagePath = @"../../Images/";
+            string imagePath = @"../../../Images/";
             Console.WriteLine(Directory.GetCurrentDirectory());
 
             string image1Path = imagePath + "image (1).jpg";
